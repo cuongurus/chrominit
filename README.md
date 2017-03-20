@@ -1,0 +1,2 @@
+# chrominit
+Chrome App generator
