@@ -1,0 +1,36 @@
+{
+  "name": "chrominit",
+  "version": "1.0.0",
+  "description": "Chrome app generator",
+  "main": "index.js",
+  "bin": {
+    "chrominit": "bin/cmd.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cuongurus/chrominit.git"
+  },
+  "keywords": [
+    "chrome",
+    "apps",
+    "generator",
+    "init",
+    "manifest.json"
+  ],
+  "author": {
+    "name": "cuongurus",
+    "email": "cuongnd95@live.com"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cuongurus/chrominit/issues"
+  },
+  "homepage": "https://github.com/cuongurus/chrominit",
+  "dependencies": {
+    "read": "~1.0.1",
+    "semver": "2.x || 3.x || 4 || 5"
+  }
+}
