@@ -15,19 +15,31 @@ var win = {
   'width': 620,
   'height': 500
 };
+console.log(
+  'This utility will walk you through creating a chrome app.\n' +
+  'It only covers the most common items, and tries to guess sensible defaults.\n' +
+  'Press ^C at any time to quit.')
+
+function isCancel(er) {
+  if (er && er.message === 'canceled') {
+    console.warn('\nCanceled!')
+  }
+}
 
 Name();
 
 
 function Name() {
   read({
-    prompt: 'name',
+    prompt: 'name:',
     default: name
   }, function (er, n) {
+    isCancel(er)
+
     if (n) {
       input.name = n;
+      Des()
     }
-    Des()
   })
 }
 
@@ -35,10 +47,11 @@ function Des() {
   read({
     prompt: 'description:'
   }, function (er, des) {
+    isCancel(er)
     if (des) {
       input.description = des;
+      Version()
     }
-    Version()
   })
 }
 
@@ -47,6 +60,7 @@ function Version() {
     prompt: 'version:',
     default: '1.0.0'
   }, function (er, v) {
+    isCancel(er)
     if (v) {
       if (semver.valid(v)) {
         input.version = v;
@@ -55,7 +69,6 @@ function Version() {
         console.log('Invalid version: ' + v);
         Version()
       }
-
     }
   })
 }
@@ -65,13 +78,14 @@ function Script() {
     prompt: 'background script:',
     default: 'background.js'
   }, function (er, b) {
+    isCancel(er)
     if (b) {
       if (!b.includes('.js')) b += '.js'
       var s = input.app.background.scripts;
       s.length = 0;
       s.push(b);
+      Page()
     }
-    Page()
   })
 }
 
@@ -80,11 +94,12 @@ function Page() {
     prompt: 'window page:',
     default: 'index.html'
   }, function (er, p) {
+    isCancel(er)
     if (p) {
       if (!p.includes('.html')) p += '.html'
       win.name = p;
+      Width()
     }
-    Width()
   })
 }
 
@@ -93,6 +108,7 @@ function Width() {
     prompt: 'window width:',
     default: 620
   }, function (er, w) {
+    isCancel(er)
     if (w) {
       if (w == parseInt(w, 10)) {
         win.width = w;
@@ -110,6 +126,7 @@ function Height() {
     prompt: 'window height:',
     default: 500
   }, function (er, h) {
+    isCancel(er)
     if (h) {
       if (h == parseInt(h, 10)) {
         win.height = h;
@@ -120,7 +137,6 @@ function Height() {
         console.log('Invalid height: ' + h)
         Height()
       }
-
     }
   })
 }
