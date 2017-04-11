@@ -13,6 +13,13 @@ npm install -g chrominit
 # Usage
 From the command line, cd to your chrome app folder and do:
 ```
-chrominit
+chrominit [options]
 ```
-Answer some questions and a chrome app is ready to load.
+Options:</br>
+| short | full | description |
+| --- | --- | --- |
+| -h | --help | output usage information |
+| -V | --version | output the version number|
+| -a | --app | Generator started Chrome app |
+| -z | --zeroconf | Install [Zeroconf lib](https://github.com/cuongurus/Zeroconf-for-Chrome) |
+

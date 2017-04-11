@@ -1,6 +1,6 @@
 {
   "name": "chrominit",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Chrome app generator",
   "main": "index.js",
   "bin": {
@@ -18,7 +18,9 @@
     "apps",
     "generator",
     "init",
-    "manifest.json"
+    "manifest.json",
+    "zeroconf",
+    "bonjour"
   ],
   "author": {
     "name": "cuongurus",
@@ -31,6 +33,7 @@
   "homepage": "https://github.com/cuongurus/chrominit",
   "dependencies": {
     "read": "~1.0.1",
-    "semver": "2.x || 3.x || 4 || 5"
+    "semver": "2.x || 3.x || 4 || 5",
+    "commander":"~2.9.0"
   }
 }

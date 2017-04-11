@@ -1,7 +1,7 @@
 exports.manifest = function (name) {
     return {
         "name": name,
-        "description": "",
+        "description": name,
         "version": "1.0.0",
         "manifest_version": 2,
         "app": {
@@ -9,6 +9,7 @@ exports.manifest = function (name) {
                 "scripts": ["background.js"]
             }
         },
+        "permissions": [],
         "icons": {}
     }
 }
