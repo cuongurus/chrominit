@@ -15,7 +15,8 @@ From the command line, cd to your chrome app folder and do:
 ```
 chrominit [options]
 ```
-Options:</br>
+Options:
+
 | short | full | description |
 | --- | --- | --- |
 | -h | --help | output usage information |
