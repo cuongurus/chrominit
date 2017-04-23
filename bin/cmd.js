@@ -12,7 +12,7 @@ var program = require('commander')
 var dir = process.cwd();
 
 program
-  .version('1.0.4')
+  .version('1.0.5')
   .option('-a, --app', 'Generator started Chrome app')
   .option('-z, --zeroconf', 'Install Zeroconf lib')
   .parse(process.argv)
@@ -20,7 +20,10 @@ program
 
 if (program.app && !program.zeroconf) app();
 if (program.zeroconf && !program.app) zeroconf();
-if (program.app && program.zeroconf) console.log("\nerror: unknown options\n")
+if (program.app && program.zeroconf) {
+  console.log("Too many arguments")
+  process.exit(1)
+}
 
 
 function app() {
@@ -159,13 +162,13 @@ function app() {
 };
 
 function zeroconf() {
-  if (fs.existsSync(dir +"/manifest.json")) {
+  if (fs.existsSync(dir + "/manifest.json")) {
     console.log('This utility will install Zeroconf lib for your chrome app and add required permission to  your "manifest.json"\n');
 
     download();
     modify();
     console.log('Zeroconf lib installed!\n' +
-        'Please import file "zeroconf.js" to your window page using script tag to use the lib!');
+      'Please import file "zeroconf.js" to your window page using script tag to use the lib!');
   } else {
     console.log("Please run 'chominit -a' to generator chrome app first!")
   }
@@ -186,28 +189,14 @@ function zeroconf() {
     };
     var obj = JSON.parse(fs.readFileSync(dir + '/manifest.json', 'utf8'));
     var len = obj.length;
-    if ('sockets' in obj) {
-      return;
-    } else {
-      obj.sockets = sockets;
-    }
+    obj.sockets = sockets;
 
-    if ('permissions' in obj) {
-      if (obj.permissions.indexOf('system.network') != -1) {
-        return;
-      } else {
-        obj.permissions.push('system.network');
-      }
-    } else {
-      object.permissions = ['system.network'];
-    }
-
-    if(obj.length != len){
+    if (obj.length != len) {
       fs.writeFile('manifest.json', JSON.stringify(obj, null, 4), 'utf-8', function (er) {
-      if (er) {
-        console.log(er);
-      }
-    });
+        if (er) {
+          console.log(er);
+        }
+      });
     }
   }
 };
